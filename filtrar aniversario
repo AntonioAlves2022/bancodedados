@@ -1,0 +1,49 @@
+select 
+    current_date, 
+    current_time,
+    current_timestamp,
+    current_timestamp(0),
+    current_time(0);
+    
+    
+select timestamp '2022-08-31 01:00:00' as hoje,
+timestamp '2022-08-31 01:00:00'  - interval '23 hours' as ontem,
+timestamp '2022-08-31 01:00:00'  -  interval '7 days' as uma_semana_atras,
+timestamp '2022-08-31 01:00:00'  -  interval '4 months' as quatro_meses_atras,
+timestamp '2022-08-31 01:00:00'  -  interval '4 years' as quatro_anos_atras;  
+
+
+select 
+    date '2022-08-31' - date '2022-08-01' dias,
+    time '02:00:00' - interval '4 hours' horas
+
+    
+select age(timestamp '1983-04-29', timestamp '1981-12-23')
+
+select 
+    extract(year from date '1981-12-23') ano,
+    extract(month from date '1981-12-23') mes,
+    extract(day from date '1981-12-23') dia,
+    extract(hour from time '12:45:30') hora,
+    extract(minute from time '12:45:30') minuto,
+    extract(second from time '12:45:30') segundos;
+
+select localtime, now(), timeofday();
+
+select nome, nascimento, nome || ' - '|| cast(nascimento as varchar) from funcionario;
+
+select nome, to_char(nascimento, 'dd/MM/yyyy') from funcionario;
+
+select to_char(now(), 'dd/MM/yyyy');
+
+
+select * from funcionario;
+
+select 
+nome, nascimento
+from funcionario
+where  to_date(to_char(nascimento, 'dd/mm/' || extract(year from now())),'dd/mm/yyyy') between now() and now()+ interval '45 days';
+
+
+
+    
